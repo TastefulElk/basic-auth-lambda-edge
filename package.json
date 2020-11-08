@@ -1,0 +1,16 @@
+{
+  "name": "basic-auth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "basic-auth.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "serverless": "^2.8.0",
+    "serverless-lambda-edge-pre-existing-cloudfront": "^1.1.4"
+  }
+}

@@ -1,0 +1,44 @@
+service:
+  name: basic-auth-demo
+
+plugins:
+  - serverless-lambda-edge-pre-existing-cloudfront
+
+provider:
+  name: aws
+  # Cloudfront only supports Lambda@Edge functions defined 
+  # in us-east-1
+  region: 'us-east-1'
+  runtime: nodejs12.x
+  versionFunctions: true
+  memorySize: 128
+  role: role
+  timeout: 5
+      
+functions:
+  basic-auth:
+    handler: basic-auth.handler
+    events:
+      - preExistingCloudFront:
+          distributionId: ${env:CLOUDFRONT_DISTRIBUTION_ID}
+          pathPattern: '*'
+          eventType: viewer-request
+          includeBody: false
+          
+resources:
+  Resources:
+    role:
+      Type: AWS::IAM::Role
+      Properties:
+        RoleName: role
+        AssumeRolePolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - lambda.amazonaws.com
+                  - edgelambda.amazonaws.com
+              Action: sts:AssumeRole
+        ManagedPolicyArns:
+          - arn:aws:iam::aws:policy/service-role/AWSLambdaRole
