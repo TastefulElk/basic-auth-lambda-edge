@@ -1,13 +1,13 @@
 {
-  "name": "basic-auth",
+  "name": "basic-auth-lambda-edge",
   "version": "1.0.0",
-  "description": "",
+  "description": "Basic Authentication with Lambda@Edge",
   "main": "basic-auth.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Sebastian Pettersson",
   "license": "ISC",
   "devDependencies": {
     "serverless": "^2.8.0",
